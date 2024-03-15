@@ -3,7 +3,7 @@ import { compare } from 'bcrypt'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-export const authOptions: NextAuthOptions = {
+ const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login'
   },
@@ -83,3 +83,5 @@ export const authOptions: NextAuthOptions = {
 
 const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
+
+export default authOptions
