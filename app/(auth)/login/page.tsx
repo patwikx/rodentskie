@@ -127,7 +127,7 @@ export default function LoginAccount() {
 
           <p className="mt-2 text-xs text-center text-gray-700 mb-2">
             {" "}
-            Don't have an account? <Link className="text-indigo-500 hover:underline" href="/register" />{" "}
+            Dont have an account? <Link className="text-indigo-500 hover:underline" href="/register" />{" "}
             <span className=" text-blue-600 hover:underline">Sign up</span>
           </p>
         </Card>

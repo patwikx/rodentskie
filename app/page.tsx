@@ -13,10 +13,10 @@ export default async function Home() {
       <div className="w-full flex justify-center items-center mt-8">
           <nav className="md:block">
          <ul className="flex items-center justify-center gap-12">
-         <Link href={'#'}>Get Started</Link>
-         <Link href={'#'}>Properties</Link>
-         <Link href={'#'}>About Us</Link>
-         <Link href={'#'}>Contact Us</Link>
+         <Link href={''}>Get Started</Link>
+         <Link href={''}>Properties</Link>
+         <Link href={''}>About Us</Link>
+         <Link href={''}>Contact Us</Link>
            </ul>
           </nav>
       </div>
