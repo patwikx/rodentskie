@@ -1,7 +1,6 @@
 import { promises as fs } from "fs"
 import path from "path"
 import { Metadata } from "next"
-import Image from "next/image"
 import { z } from "zod"
 
 import { columns } from "./components/columns"
@@ -12,10 +11,11 @@ import TeamSwitcher from "../dashboard/components/team-switcher"
 import { MainNav } from "../dashboard/components/main-nav"
 import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
+import { AdminControl } from "../dashboard/components/admin-settings"
 
 export const metadata: Metadata = {
   title: "Task Manager",
-  description: "A task and issue tracker build using Tanstack Table.",
+  description: "A task and issue tracker built using Tanstack Table.",
 }
 
 // Simulate a database read for tasks.
@@ -33,31 +33,30 @@ export default async function TaskPage() {
   const tasks = await getTasks()
 
   return (
-    <>
-    <div className="border-b">
-          <div className="flex h-16 items-center px-2">
-            <TeamSwitcher />
-            <MainNav className="mx-6 md:block" />
-            <div className="ml-auto flex items-center space-x-4">
-              <Search />
-              <ModeToggle />
-              <UserNav />
-            </div>
+    <div className="min-h-screen flex flex-col">
+      <div className="border-b">
+        <div className="flex h-16 items-center px-2">
+          <TeamSwitcher />
+          <MainNav className="mx-6 md:block" />
+          <AdminControl />
+          <div className="ml-auto flex items-center space-x-4">
+            <Search />
+            <ModeToggle />
+            <UserNav />
           </div>
         </div>
-      <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-        <div className="flex items-center justify-between space-y-2">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
-            <p className="text-muted-foreground">
-              Here&apos;s a list of your tasks for this month!
-            </p>
-          </div>
-          <div className="flex items-center space-x-2">
-          </div>
-        </div>
-        <DataTable data={tasks} columns={columns} />
       </div>
-    </>
+      <div className="flex-1 flex flex-col p-4">
+        <div className="flex flex-col space-y-4">
+          <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
+          <p className="text-muted-foreground">
+            Here's a list of your tasks for this month!
+          </p>
+        </div>
+        <div className="flex-1 overflow-auto">
+          <DataTable data={tasks} columns={columns} />
+        </div>
+      </div>
+    </div>
   )
 }

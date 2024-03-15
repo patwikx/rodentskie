@@ -23,6 +23,7 @@ import TeamSwitcher from "@/app/(app)/dashboard/components/team-switcher"
 import { UserNav } from "@/app/(app)/dashboard/components/user-nav"
 import { ModeToggle } from "@/components/mode-toggle"
 import { TenantAnniv } from "./components/tenant-anniv"
+import { AdminControl } from "./components/admin-settings"
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -37,6 +38,7 @@ export default function DashboardPage() {
           <div className="flex h-16 items-center px-4">
             <TeamSwitcher />
             <MainNav className="mx-6 md:block" />
+            <AdminControl />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
               <ModeToggle />

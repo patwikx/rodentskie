@@ -6,6 +6,7 @@ import { MainNav } from "../dashboard/components/main-nav"
 import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserNav } from "../dashboard/components/user-nav"
+import { AdminControl } from "../dashboard/components/admin-settings"
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -46,6 +47,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
           <div className="flex h-16 items-center px-2">
             <TeamSwitcher />
             <MainNav className="mx-6 md:block" />
+            <AdminControl />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
               <ModeToggle />
