@@ -85,11 +85,6 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
             className={cn("w-[320px] justify-between", className)}
           >
             <Avatar className="mr-2 h-5 w-5">
-              <AvatarImage
-                src={`https://avatar.vercel.sh/${selectedTeam.value}.png`}
-                alt={selectedTeam.label}
-                className="grayscale"
-              />
               <AvatarFallback> <Image src="/assets/rdrdc.png" alt="Fallback Image" width={50} height={50}/></AvatarFallback>
             </Avatar>
             {selectedTeam.label}

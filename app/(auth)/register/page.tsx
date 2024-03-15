@@ -16,60 +16,76 @@ import { useState } from "react"
 import React from "react"
 import { signIn } from "next-auth/react"
 import toast from "react-hot-toast"
+import TeamSwitcher from "@/app/(app)/dashboard/components/team-switcher"
+import { MainNav } from "@/app/(app)/dashboard/components/main-nav"
+import { Search } from "@/app/(app)/dashboard/components/search"
+import { ModeToggle } from "@/components/mode-toggle"
+import { UserNav } from "@/app/(app)/dashboard/components/user-nav"
 
+const SignUpForm = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
 
- const SignUpForm = () => {
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
-    const [error, setError] = useState('')
-
-    const onSubmit = async (e: React.FormEvent) => {
-      e.preventDefault();
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
   
-      // Input validation
-      if (!email || !password || !name) {
-          toast.error('All fields are required.');
-          return;
+    // Input validation
+    if (!email || !password || !name) {
+      toast.error('All fields are required.');
+      return;
+    }
+  
+    // Email validation
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(email)) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
+  
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          name
+        })
+      })
+  
+      const data = await res.json();
+  
+      if (!res.ok) {
+        // Check if the server failed to create the user
+        if (data.error && data.error === 'Failed to create user') {
+          toast.error('Server failed to create the user.');
+        } else {
+          throw new Error(data.message || 'Registration failed');
+        }
+        return;
       }
   
-      // Email validation
-      const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-      if (!emailRegex.test(email)) {
-          toast.error('Please enter a valid email address.');
-          return;
-      }
-  
-      try {
-          const res = await fetch('/api/register', {
-              method: 'POST',
-              body: JSON.stringify({
-                  email,
-                  password,
-                  name
-              }),
-              headers: {
-                  'Content-Type': 'application/json'
-              }
-          })
-  
-          if (res.ok) {
-            console.log('Registered Successfully.');
-              await signIn()
-          } else {
-              const errorData = await res.json();
-              throw new Error(errorData.message || 'Registration failed');
-          }
-      } catch (error: any) {
-          toast.error(error.message);
-      }
+      toast.success('Registered Successfully.');
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   }
 
-
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden rounded">
-      <div className="w-full m-auto bg-white lg:max-w-lg rounded">
+    <div className="border-b relative justify-center items-center min-h-screen overflow-hidden rounded">
+      <div className="flex h-16 items-center px-2">
+            <TeamSwitcher />
+            <MainNav className="mx-6 md:block" />
+            <div className="ml-auto flex items-center space-x-4">
+              <Search />
+              <ModeToggle />
+              <UserNav />
+            </div>
+          </div>
+      <div className="w-full m-auto bg-white lg:max-w-lg rounded mt-48">
         <Card className="rounded">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl text-center">
