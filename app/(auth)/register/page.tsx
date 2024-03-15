@@ -18,7 +18,7 @@ import { signIn } from "next-auth/react"
 import toast from "react-hot-toast"
 
 
-export const SignUpForm = () => {
+ const SignUpForm = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
