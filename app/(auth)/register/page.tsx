@@ -55,7 +55,7 @@ import toast from "react-hot-toast"
           })
   
           if (res.ok) {
-            console.log('Register!');
+            console.log('Registered Successfully.');
               await signIn()
           } else {
               const errorData = await res.json();
@@ -68,9 +68,9 @@ import toast from "react-hot-toast"
 
 
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden">
-      <div className="w-full m-auto bg-white lg:max-w-lg">
-        <Card>
+    <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden rounded">
+      <div className="w-full m-auto bg-white lg:max-w-lg rounded">
+        <Card className="rounded">
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl text-center">
               Create an account
@@ -128,8 +128,8 @@ import toast from "react-hot-toast"
           </div>
           <div className="grid grid-cols-2 gap-6 m-2">
             <Button variant="outline">
-              <Icons.gitHub className="mr-2 h-4 w-4" />
-              Github
+              <Icons.google className="mr-2 h-4 w-4" />
+              Google
             </Button>
             <Button variant="outline">
               <Icons.twitter className="mr-2 h-4 w-4" />

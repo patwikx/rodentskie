@@ -19,6 +19,7 @@ import { useState } from "react"
 import { toast } from 'react-hot-toast';
 
 
+
 export default function LoginAccount() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -42,8 +43,9 @@ export default function LoginAccount() {
       // Validate email format
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       if (!emailRegex.test(email)) {
+        toast.error('Please enter a valid email address.')
           setError('Please enter a valid email address.')
-          setHasError(true) // Add this line
+          setHasError(true) 
           return
       }
 
@@ -57,18 +59,18 @@ export default function LoginAccount() {
 
 
   return (
-    <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden">
-      <div className="w-full m-auto bg-white lg:max-w-lg">
-        <Card>
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-2xl text-center">Sign in</CardTitle>
-            <CardDescription className="text-center">
+    <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden rounded">
+      <div className="w-full m-auto bg-white lg:max-w-lg rounded">
+        <Card className="rounded">
+          <CardHeader className="space-y-1 rounded">
+            <CardTitle className="text-2xl text-center rounded">Sign in</CardTitle>
+            <CardDescription className="text-center rounded">
               Enter your email and password to login
               {error && <p className="text-red-500">{error}</p>}
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="grid gap-2">
+          <CardContent className="grid gap-4 rounded">
+            <div className="grid gap-2 rounded">
               <Label htmlFor="email">Email</Label>
               <Input 
               id="email" 
@@ -80,7 +82,7 @@ export default function LoginAccount() {
                className={hasError ? 'border-red-500' : ''}
                />
             </div>
-            <div className="grid gap-2">
+            <div className="grid gap-2 rounded">
               <Label htmlFor="password">Password</Label>
               <Input 
               id="password"
@@ -91,7 +93,7 @@ export default function LoginAccount() {
                className={hasError ? 'border-red-500' : ''}
                />
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 rounded">
               <Checkbox id="terms" />
               <label
                 htmlFor="terms"
@@ -104,20 +106,20 @@ export default function LoginAccount() {
           <CardFooter className="flex flex-col">
             <Button className="w-full" onClick={onSubmit}>Login</Button>
           </CardFooter>
-          <div className="relative mb-2">
-            <div className="absolute inset-0 flex items-center">
+          <div className="relative mb-2 rounded">
+            <div className="absolute inset-0 flex items-center rounded">
               <span className="w-full border-t" />
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
+            <div className="relative flex justify-center text-xs uppercase rounded">
               <span className="bg-background px-2 text-muted-foreground">
                 Or continue with
               </span>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-6 m-2">
+          <div className="grid grid-cols-2 gap-6 m-2 rounded">
             <Button variant="outline">
-              <Icons.gitHub className="mr-2 h-4 w-4" />
-              Github
+              <Icons.google className="mr-2 h-4 w-4" />
+              Google
             </Button>
             <Button variant="outline">
               <Icons.twitter className="mr-2 h-4 w-4" />

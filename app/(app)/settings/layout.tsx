@@ -1,6 +1,4 @@
 import { Metadata } from "next"
-import Image from "next/image"
-
 import { Separator } from "@/components/ui/separator"
 import { SidebarNav } from "@/app/(app)/settings/components/sidebar-nav"
 import TeamSwitcher from "../dashboard/components/team-switcher"
