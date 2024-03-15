@@ -10,7 +10,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { UserNav } from "../dashboard/components/user-nav"
 
 export const metadata: Metadata = {
-  title: "Forms",
+  title: "Settings",
   description: "Advanced form example using react-hook-form and Zod.",
 }
 

@@ -14,7 +14,7 @@ import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 
 export const metadata: Metadata = {
-  title: "Tasks",
+  title: "Task Manager",
   description: "A task and issue tracker build using Tanstack Table.",
 }
 
