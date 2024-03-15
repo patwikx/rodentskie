@@ -12,6 +12,12 @@ export function MainNav({
       {...props}
     >
       <Link
+        href="/dashboard"
+        className="text-sm font-medium transition-colors hover:text-primary"
+      >
+        Dashboard
+      </Link>
+      <Link
         href="/properties"
         className="text-sm font-medium transition-colors hover:text-primary"
       >
@@ -35,6 +41,12 @@ export function MainNav({
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
         Task Manager
+      </Link>
+      <Link
+        href="/settings"
+        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+      >
+        Settings
       </Link>
     </nav>
   )
