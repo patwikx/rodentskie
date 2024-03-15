@@ -50,7 +50,7 @@ export default async function TaskPage() {
         <div className="flex flex-col space-y-4">
           <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
           <p className="text-muted-foreground">
-            Here's a list of your tasks for this month!
+            Here are the list of your tasks for this month.
           </p>
         </div>
         <div className="flex-1 overflow-auto">
