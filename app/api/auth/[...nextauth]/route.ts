@@ -3,7 +3,7 @@ import { compare } from 'bcrypt'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
- const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login'
   },
@@ -29,6 +29,13 @@ import CredentialsProvider from 'next-auth/providers/credentials'
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
+          },
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            role: true, // Make sure to select the role
+            password: true,
           }
         })
 
@@ -36,10 +43,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
           return null
         }
 
-        const isPasswordValid = await compare(
-          credentials.password,
-          user.password
-        )
+        const isPasswordValid = await compare(credentials.password, user.password)
 
         if (!isPasswordValid) {
           return null
@@ -49,7 +53,8 @@ import CredentialsProvider from 'next-auth/providers/credentials'
           id: user.id + '',
           email: user.email,
           name: user.name,
-          randomKey: 'P455W00asrd!@#'
+          role: user.role, // Return the role
+          Key: 'P455W00asrd!@#'
         }
       }
     })
@@ -62,6 +67,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
         user: {
           ...session.user,
           id: token.id,
+          role: token.role, // Add role to session
           randomKey: token.randomKey
         }
       }
@@ -73,6 +79,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
         return {
           ...token,
           id: u.id,
+          role: u.role, // Add role to JWT token
           randomKey: u.randomKey
         }
       }

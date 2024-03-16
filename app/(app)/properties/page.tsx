@@ -1,11 +1,62 @@
-import React from 'react'
+import { promises as fs } from "fs"
+import path from "path"
+import { Metadata } from "next"
+import { z } from "zod"
 
-const Properties = () => {
+import { columns } from "./components/columns"
+import { DataTable } from "./components/data-table"
+import { UserNav } from "../dashboard/components/user-nav"
+import { taskSchema } from "./data/schema"
+import TeamSwitcher from "../dashboard/components/team-switcher"
+import { MainNav } from "../dashboard/components/main-nav"
+import { Search } from "../dashboard/components/search"
+import { ModeToggle } from "@/components/mode-toggle"
+import { AdminControl } from "../dashboard/components/admin-settings"
+
+export const metadata: Metadata = {
+  title: "Property Manager",
+  description: "A task and issue tracker built using Tanstack Table.",
+}
+
+// Simulate a database read for tasks.
+async function getTasks() {
+  const data = await fs.readFile(
+    path.join(process.cwd(), "app/(app)/taskmanager/data/tasks.json")
+  )
+
+  const tasks = JSON.parse(data.toString())
+
+  return z.array(taskSchema).parse(tasks)
+}
+
+export default async function TaskPage() {
+  const tasks = await getTasks()
+
   return (
-    <div>
-      Properties
+    <div className="min-h-screen flex flex-col">
+      <div className="border-b">
+        <div className="flex h-16 items-center px-2">
+          <TeamSwitcher />
+          <MainNav className="mx-6 md:block" />
+          <AdminControl />
+          <div className="ml-auto flex items-center space-x-4">
+            <Search />
+            <ModeToggle />
+            <UserNav />
+          </div>
+        </div>
+      </div>
+      <div className="flex-1 flex flex-col p-4">
+        <div className="flex flex-col space-y-4">
+          <h2 className="text-2xl font-bold tracking-tight">Property Management</h2>
+          <p className="text-muted-foreground" style={{ marginBottom: '20px' }}>
+  Here are the list of your properties.
+</p>
+        </div>
+        <div className="flex-1 overflow-auto">
+          <DataTable data={tasks} columns={columns} />
+        </div>
+      </div>
     </div>
   )
 }
-
-export default Properties

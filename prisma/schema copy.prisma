@@ -23,13 +23,16 @@ model User {
   name          String
   email         String       @unique
   password      String
-  role          Role @default(Administrator)
+  role          Role
+  emailVerified DateTime?
   image         String?
+  accounts      Account[]    @relation("SysUserAccounts")
+  sessions      Session[]    @relation("SysUserSessions")
   properties    Properties[]
   billing       Billing[]
-  createdAt     DateTime @default(now())
-  createdBy     String?
-  updatedBy     String?
+  createdAt DateTime @default(now())
+  createdBy     String
+  updatedBy     String
   deletedAt     DateTime?
 }
 
@@ -38,8 +41,6 @@ model Tenant {
   name          String
   email         String       @unique
   password      String
-  contactNo     String
-  address       String
   emailVerified DateTime?
   image         String?
   spaces        Spaces[]
@@ -48,9 +49,8 @@ model Tenant {
   createdBy     String
   updatedBy     String
   deletedAt     DateTime?
-  accounts      Account[]    @relation("TenantAccounts")
-  sessions      Session[]    @relation("TenantSessions")
 }
+
 model Properties {
   id            String       @id @default(cuid())
   createdAt     DateTime     @default(now())
@@ -70,15 +70,15 @@ model Spaces {
   id            String       @id @default(cuid())
   spaceName     String
   oStatus       String
-  leasePeriod   String?
-  expiryDate    DateTime?
-  gFloorArea    Float?
-  mezFloor      Float?
-  secFloor      Float?
-  thirdFloor    Float?
-  roofTop       Float?
-  totalArea     Float
-  monthlyRent   Float
+  leasePeriod   String
+  expiryDate    DateTime
+  gFloorArea    String
+  mezFloor      String
+  secFloor      String
+  thirdFloor    String
+  roofTop       String
+  totalArea     String
+  monthlyRent   String
   tenantId      String
   tenant        Tenant       @relation(fields: [tenantId], references: [id])
   propertyId    String
@@ -98,29 +98,16 @@ model Billing {
   sysUser       User      @relation(fields: [sysUserId], references: [id])
   tenantId      String
   tenant        Tenant       @relation(fields: [tenantId], references: [id])
-  attachmentId  String?      @unique
-  attachment    Attachment? @relation(fields: [attachmentId], references: [id])
   createdAt DateTime @default(now())
   createdBy     String
   updatedBy     String
   deletedAt     DateTime?
 }
 
-model Attachment {
-  id        String @id @default(cuid())
-  filePath  String
-  fileName  String
-  fileType  String
-  fileSize  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  billing   Billing?
-}
-
 model Account {
   id        String @id @default(cuid())
   compoundId String @unique
-  tenantId  String
+  userId    String
   providerType String
   providerId   String
   providerAccountId String
@@ -129,7 +116,7 @@ model Account {
   accessTokenExpires DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  tenant    Tenant @relation("TenantAccounts", fields: [tenantId], references: [id])
+  sysUser   User   @relation("SysUserAccounts", fields: [userId], references: [id])
   createdBy String
   updatedBy String
   deletedAt DateTime?
@@ -137,13 +124,13 @@ model Account {
 
 model Session {
   id        String @id @default(cuid())
-  tenantId  String
+  userId    String
   expires   DateTime
   sessionToken String @unique
   accessToken String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  tenant    Tenant @relation("TenantSessions", fields: [tenantId], references: [id])
+  sysUser   User   @relation("SysUserSessions", fields: [userId], references: [id])
   createdBy String
   updatedBy String
   deletedAt DateTime?

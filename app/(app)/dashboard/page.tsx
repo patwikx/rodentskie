@@ -26,7 +26,7 @@ import { TenantAnniv } from "./components/tenant-anniv"
 import { AdminControl } from "./components/admin-settings"
 
 export const metadata: Metadata = {
-  title: "Dashboard",
+  title: "RDRDC Dashboard",
   description: "Example dashboard app built using the components.",
 }
 

@@ -25,15 +25,12 @@ export default function LoginAccount() {
   const [password, setPassword] = useState<string>('')
 
   const isEmailValid = (email: string): boolean => {
-    // Regular expression for basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return emailRegex.test(email)
   }
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    // Data validation
     if (!email.trim()) {
       toast.error('Email is required.')
       return
