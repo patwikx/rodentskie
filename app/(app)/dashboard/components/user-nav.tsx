@@ -21,6 +21,7 @@ import Link from "next/link";
 import { useSession } from 'next-auth/react'
 import { signOut } from 'next-auth/react'
 import Image from "next/image"
+import { Badge } from "@/components/ui/badge";
 
 export function UserNav() {
 
@@ -47,31 +48,29 @@ export function UserNav() {
 </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-60" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-lg font-medium leading-none">{session?.user?.name}</p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {session?.user?.email}
+          <div className="flex flex-col space-y-4">
+            <p className="flex flex-col text-lg font-medium leading-none text-center">{session?.user?.name}</p>
+            <p className="flex flex-col text-ml space-y-4 leading-none text-muted-foreground">
+            {session?.user?.email}
             </p>
-            <p className="text-sm leading-none text-muted-foreground">
-              {session?.user?.role}
+            <p className="text-sm space-y-4 leading-none text-muted-foreground">
+            <Badge className="flex flex-col"variant="destructive"> {session?.user?.role}</Badge>
             </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="flex flex-col text-center">
             <Link href="/settings">
-                Settings
+                Profile Settings
             </Link>
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut({callbackUrl: '/'})} >
+        <DropdownMenuItem onClick={() => signOut({callbackUrl: '/'})} className="flex flex-col text-center">
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

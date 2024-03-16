@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "User" ALTER COLUMN "createdBy" DROP NOT NULL,
-ALTER COLUMN "updatedBy" DROP NOT NULL;
