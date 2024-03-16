@@ -11,4 +11,7 @@ export const config = { matcher: [
   '/profiles',
   '/users',
   '/settings',
+  '/api/auth/signout',
+  '/api/auth/callback',
+  '/api',
 ]}
