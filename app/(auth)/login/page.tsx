@@ -60,7 +60,7 @@ export default function LoginAccount() {
         toast.success('Login successful! Redirecting to dashboard... please wait.')
         setTimeout(() => {
           router.push('/dashboard')
-        }, 2000) // 2-second delay
+        }, 2000)
       } else {
         toast.error('Invalid email or password. Please try again.')
       }
