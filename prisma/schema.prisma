@@ -16,6 +16,7 @@ datasource db {
 enum Role {
   Administrator
   SysUser
+  Tenant
 }
 
 model User {
@@ -37,16 +38,16 @@ model Tenant {
   id            String       @id @default(cuid())
   name          String
   email         String       @unique
-  password      String
-  contactNo     String
-  address       String
+  password      String?
+  contactNo     String?
+  address       String?
   emailVerified DateTime?
   image         String?
   spaces        Spaces[]
   billing       Billing[]
   createdAt DateTime @default(now())
-  createdBy     String
-  updatedBy     String
+  createdBy     String?
+  updatedBy     String?
   deletedAt     DateTime?
   accounts      Account[]    @relation("TenantAccounts")
   sessions      Session[]    @relation("TenantSessions")
@@ -130,8 +131,7 @@ model Account {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   tenant    Tenant @relation("TenantAccounts", fields: [tenantId], references: [id])
-  createdBy String
-  updatedBy String
+  updatedBy String?
   deletedAt DateTime?
 }
 
@@ -144,7 +144,6 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   tenant    Tenant @relation("TenantSessions", fields: [tenantId], references: [id])
-  createdBy String
-  updatedBy String
+  updatedBy String?
   deletedAt DateTime?
 }
