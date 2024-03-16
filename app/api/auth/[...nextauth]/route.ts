@@ -2,6 +2,14 @@ import { prisma } from '@/lib/prisma'
 import { compare } from 'bcrypt'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google'
+
+const clientId = process.env.GOOGLE_ID
+const clientSecret = process.env.GOOGLE_SECRET
+
+if (!clientId || !clientSecret) {
+  throw new Error('GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET must be defined')
+}
 
 const authOptions: NextAuthOptions = {
   pages: {
@@ -11,6 +19,10 @@ const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   providers: [
+    GoogleProvider({
+      clientId,
+      clientSecret
+    }),
     CredentialsProvider({
       name: 'Sign in',
       credentials: {

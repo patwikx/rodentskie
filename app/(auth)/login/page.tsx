@@ -19,6 +19,7 @@ import { useState } from "react"
 import { toast } from 'react-hot-toast';
 import { useRouter } from "next/navigation"
 import GoogleIcon from "@/components/ui/GoogleIcon"
+import GoogleProvider from 'next-auth/providers/google'
 
 
 export default function LoginAccount() {
@@ -126,10 +127,12 @@ export default function LoginAccount() {
             </div>
           </div>
           <div className="flex flex-col gap-4 m-5 rounded">
-          <Button variant="outline" className="w-full py-2 px-4 text-sm">
+          <Button onClick={() => signIn('google', { 
+            callbackUrl: `${window.location.origin}/dashboard` })} 
+            variant="outline" className="w-full py-2 px-4 text-sm">
               <GoogleIcon className="mr-2 h-6 w-6" />
-              Google
-          </Button>
+            Google
+            </Button>
           </div>
 
           <p className="mt-2 text-xs text-center text-gray-700 mb-2">
