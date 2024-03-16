@@ -20,7 +20,7 @@ import {
     return (
       <Menubar>
         <MenubarMenu>
-        <MenubarTrigger style={{fontWeight: 'bold'}}>Admin Control</MenubarTrigger>
+        <MenubarTrigger style={{fontWeight: 'bold'}}>Admin Panel</MenubarTrigger>
           <MenubarContent>
             <MenubarRadioGroup value="benoit">
               <MenubarRadioItem value="andy">User Access</MenubarRadioItem>
