@@ -49,7 +49,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
           id: user.id + '',
           email: user.email,
           name: user.name,
-          randomKey: 'Hey cool'
+          randomKey: 'P455W00asrd!@#'
         }
       }
     })

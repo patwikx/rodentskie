@@ -59,18 +59,18 @@ const SignUpForm = () => {
       const data = await res.json();
   
       if (!res.ok) {
-        // Check if the server failed to create the user
-        if (data.error && data.error === 'Failed to create user') {
-          toast.error('Server failed to create the user.');
-        } else {
-          throw new Error(data.message || 'Registration failed');
-        }
-        return;
+        throw new Error(data.message || 'Registration failed');
       }
   
+      // Registration successful
       toast.success('Registered Successfully.');
+      // Clear input fields
+      setEmail('');
+      setPassword('');
+      setName('');
     } catch (error: any) {
-      toast.error(error.message);
+      // Registration failed
+      toast.error(error.message || 'An error occurred while processing your request');
     }
   }
 

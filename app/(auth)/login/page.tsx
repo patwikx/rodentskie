@@ -17,46 +17,56 @@ import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { useState } from "react"
 import { toast } from 'react-hot-toast';
-
-
+import { useRouter } from "next/navigation"
 
 export default function LoginAccount() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState('')
-    const [hasError, setHasError] = useState(false) // Add this line
+  const router = useRouter()
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
-    const onSubmit = async (e: React.FormEvent) => {
-      e.preventDefault()
-
-      // Reset error state
-      setError('')
-      setHasError(false) // Add this line
-
-      // Validate email and password
-      if (!email || !password) {
-          setError('Email and password are required.')
-          setHasError(true) // Add this line
-          return
-      }
-
-      // Validate email format
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      if (!emailRegex.test(email)) {
-        toast.error('Please enter a valid email address.')
-          setError('Please enter a valid email address.')
-          setHasError(true) 
-          return
-      }
-
-      signIn('credentials', {
-          email,
-          password,
-          callbackUrl: '/dashboard'
-      })
+  const isEmailValid = (email: string): boolean => {
+    // Regular expression for basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
   }
 
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
 
+    // Data validation
+    if (!email.trim()) {
+      toast.error('Email is required.')
+      return
+    }
+
+    if (!isEmailValid(email)) {
+      toast.error('Please enter a valid email.')
+      return
+    }
+
+    if (!password.trim()) {
+      toast.error('Password is required.')
+      return
+    }
+
+    try {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      })
+
+      if (!res?.error) {
+        router.push('/dashboard')
+      } else {
+        toast.error('Invalid email or password. Please try again.')
+      }
+    } catch (error: any) {
+      console.error("Sign-in error:", error)
+      toast.error('An error occurred during sign-in. Please try again.')
+    }
+  }
+  
 
   return (
     <div className="relative flex flex-col justify-center items-center min-h-screen overflow-hidden rounded">
@@ -66,7 +76,6 @@ export default function LoginAccount() {
             <CardTitle className="text-2xl text-center rounded">Sign in</CardTitle>
             <CardDescription className="text-center rounded">
               Enter your email and password to login
-              {error && <p className="text-red-500">{error}</p>}
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4 rounded">
@@ -79,7 +88,6 @@ export default function LoginAccount() {
                required
                value={email}
                onChange={(e) => setEmail(e.target.value)}
-               className={hasError ? 'border-red-500' : ''}
                />
             </div>
             <div className="grid gap-2 rounded">
@@ -90,7 +98,6 @@ export default function LoginAccount() {
                required
                value={password}
                onChange={(e) => setPassword(e.target.value)}
-               className={hasError ? 'border-red-500' : ''}
                />
             </div>
             <div className="flex items-center space-x-2 rounded">

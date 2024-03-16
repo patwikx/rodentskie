@@ -6,17 +6,26 @@ export async function POST(req: Request) {
   try {
     const { email, password, name } = await req.json();
 
+    // Validate input
+    if (!email || !password || !name) {
+      return NextResponse.json({
+        status: 'error',
+        message: 'Please provide all required fields: email, password, name',
+      }, { status: 400 }); // Set status code to 400 Bad Request
+    }
+
     // Check if a user with the same email already exists
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return NextResponse.json({
         status: 'error',
         message: 'A user with this email already exists',
-      });
+      }, { status: 400 }); // Set status code to 400 Bad Request
     }
 
     const hashed = await hash(password, 12);
 
+    // Create the user
     const user = await prisma.user.create({
       data: {
         email,
@@ -25,18 +34,19 @@ export async function POST(req: Request) {
       },
     });
 
+    // Return user data (without password)
     return NextResponse.json({
       status: 'success',
       user: {
         email: user.email,
         name: user.name,
-        password: user.password,
       },
     });
   } catch (error) {
+    console.error("Error during user registration:", error);
     return NextResponse.json({
       status: 'error',
-      message: (error as Error).message,
-    });
+      message: 'An error occurred while processing your request',
+    }, { status: 500 }); // Set status code to 500 Internal Server Error
   }
 }
