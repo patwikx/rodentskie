@@ -26,24 +26,25 @@ export function UserNav() {
 
   const { data: session, status } = useSession()
   const loading = status === 'loading'
-  const defaultImage = "/assets/usericon.png"; // Default image path
 
   if (loading) {
     return null
   }
   
-  const userImage = session?.user?.image || defaultImage; // Use user's image if it exists, otherwise use default image
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
         <Avatar className="h-8 w-8">
-            <AvatarImage src={userImage} alt="@shadcn" />
-            <AvatarFallback>
-              <Image src={defaultImage} alt="Fallback Image" width={40} height={40}/>
-            </AvatarFallback>
-          </Avatar>
+  {session?.user?.image ? (
+    <AvatarImage src={session.user.image} alt="@shadcn" />
+  ) : (
+    <AvatarImage src="/assets/usericon.png" alt="@shadcn" />
+  )}
+  <AvatarFallback>
+    <Image src="/assets/usericon.png" alt="Fallback Image" width={40} height={40}/>
+  </AvatarFallback>
+</Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>

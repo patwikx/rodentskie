@@ -18,7 +18,8 @@ import { signIn } from "next-auth/react"
 import { useState } from "react"
 import { toast } from 'react-hot-toast';
 import { useRouter } from "next/navigation"
-import { GoogleColoredIcon } from "@/components/ui/GoogleIcon"
+import GoogleIcon from "@/components/ui/GoogleIcon"
+
 
 export default function LoginAccount() {
   const router = useRouter()
@@ -124,17 +125,12 @@ export default function LoginAccount() {
               </span>
             </div>
           </div>
-          <div className="flex justify-center m-2 rounded">
-  <Button className="w-full max-w-lg" variant="outline" onClick={async () => {
-    const result = await signIn('google', { callbackUrl: `${window.location.origin}/dashboard` })
-    if (result?.ok) {
-      router.push('/dashboard')
-    }
-  }}>
-    <GoogleColoredIcon />
-    Google
-  </Button>
-</div>
+          <div className="flex flex-col gap-4 m-5 rounded">
+          <Button variant="outline" className="w-full py-2 px-4 text-sm">
+              <GoogleIcon className="mr-2 h-6 w-6" />
+              Google
+          </Button>
+          </div>
 
           <p className="mt-2 text-xs text-center text-gray-700 mb-2">
             {" "}
