@@ -21,6 +21,7 @@ import { MainNav } from "@/app/(app)/dashboard/components/main-nav"
 import { Search } from "@/app/(app)/dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserNav } from "@/app/(app)/dashboard/components/user-nav"
+import { SystemMenu } from "@/app/(app)/dashboard/components/system-menu"
 
 const SignUpForm = () => {
   const [email, setEmail] = useState('')
@@ -76,26 +77,30 @@ const SignUpForm = () => {
 
   return (
     <div className="border-b relative justify-center items-center min-h-screen overflow-hidden rounded">
-      <div className="flex h-16 items-center px-2">
-            <TeamSwitcher />
-            <MainNav className="mx-6 md:block" />
-            <div className="ml-auto flex items-center space-x-4">
-              <Search />
-              <ModeToggle />
-              <UserNav />
+          <div className="w-full h-auto md:h-16">
+              <div className="flex h-16 items-center px-4">
+                    <div className="hidden sm:block">
+                     <TeamSwitcher />
+                    </div>
+                      <SystemMenu />
+                 <div className="ml-auto flex items-center space-x-2">
+                     <Search />
+                     <ModeToggle />
+                     <UserNav />
+                 </div>
+               </div>
             </div>
-          </div>
-      <div className="w-full m-auto bg-white lg:max-w-lg rounded mt-48">
-        <Card className="rounded">
-          <CardHeader className="space-y-1">
+            <div className="w-full m-auto bg-white lg:max-w-lg rounded mt-48">
+            <Card className="rounded">
+            <CardHeader className="space-y-1">
             <CardTitle className="text-2xl text-center">
               Create an account
             </CardTitle>
             <CardDescription className="text-center">
               Enter your email and password to sign up
             </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
+            </CardHeader>
+           <CardContent className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="name">Name</Label>
               <Input id="name" type="text" 
@@ -128,10 +133,10 @@ const SignUpForm = () => {
             <span className=" text-blue-600 hover:underline text-sm">
               Forget password ?
             </span>
-          </CardContent>
-          <CardFooter className="flex flex-col">
-            <Button className="w-full" onClick={onSubmit}>Sign Up</Button>
-          </CardFooter>
+             </CardContent>
+           <CardFooter className="flex flex-col">
+             <Button className="w-full" onClick={onSubmit}>Sign Up</Button>
+           </CardFooter>
           <div className="relative mb-2">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />

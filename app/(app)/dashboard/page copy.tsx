@@ -15,6 +15,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 import { CalendarDateRangePicker } from "@/app/(app)/dashboard/components/date-range-picker"
+import { MainNav } from "@/app/(app)/dashboard/components/main-nav"
 import { Overview } from "@/app/(app)/dashboard/components/overview"
 import { RecentSales } from "@/app/(app)/dashboard/components/recent-sales"
 import { Search } from "@/app/(app)/dashboard/components/search"
@@ -22,7 +23,7 @@ import TeamSwitcher from "@/app/(app)/dashboard/components/team-switcher"
 import { UserNav } from "@/app/(app)/dashboard/components/user-nav"
 import { ModeToggle } from "@/components/mode-toggle"
 import { TenantAnniv } from "./components/tenant-anniv"
-import { SystemMenu } from "./components/system-menu"
+import { AdminControl } from "./components/admin-settings"
 
 export const metadata: Metadata = {
   title: "RDRDC Dashboard",
@@ -32,21 +33,20 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
   return (
     <>
-      <div className="w-full md:h-16">
-         <div className="w-full h-auto md:h-16">
-            <div className="flex h-16 items-center px-4">
-            <div className="hidden sm:block">
-                  <TeamSwitcher />
+      <div className="border-b w-full md:h-16">
+         <div className="border-b w-full h-auto md:h-16">
+          <div className="flex h-16 items-center px-4">
+            <TeamSwitcher />
+            <MainNav className="mx-4 md:mx-6 md:block" />
+            <AdminControl />
+            <div className="ml-auto flex items-center space-x-2">
+              <Search />
+              <ModeToggle />
+              <UserNav />
             </div>
-            <SystemMenu />
-              <div className="ml-auto flex items-center space-x-2">
-                <Search />
-                <ModeToggle />
-                <UserNav />
-              </div>
           </div>
-          </div>
-        <div className="flex-1 space-y-4 p-8 md:p-4 pt-6">
+        </div>
+        <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0 md:items-center">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
             <div className="flex items-center space-x-2">
@@ -182,7 +182,7 @@ export default function DashboardPage() {
                 </Card>
                 <Card className="col-span-2">
                   <CardHeader>
-                    <CardTitle>New Tenants. 🥳✨</CardTitle>
+                    <CardTitle>New Tenants.</CardTitle>
                     <CardDescription>
                       You have 28 new tenants for this month.
                     </CardDescription>

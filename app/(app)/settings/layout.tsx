@@ -7,6 +7,7 @@ import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserNav } from "../dashboard/components/user-nav"
 import { AdminControl } from "../dashboard/components/admin-settings"
+import { SystemMenu } from "../dashboard/components/system-menu"
 
 export const metadata: Metadata = {
   title: "Settings",
@@ -44,15 +45,18 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <>
     <div className="border-b">
-          <div className="flex h-16 items-center px-2">
-            <TeamSwitcher />
-            <MainNav className="mx-6 md:block" />
-            <AdminControl />
-            <div className="ml-auto flex items-center space-x-4">
-              <Search />
-              <ModeToggle />
-              <UserNav />
+    <div className="w-full h-auto md:h-16">
+            <div className="flex h-16 items-center px-4">
+            <div className="hidden sm:block">
+                  <TeamSwitcher />
             </div>
+            <SystemMenu />
+              <div className="ml-auto flex items-center space-x-2">
+                <Search />
+                <ModeToggle />
+                <UserNav />
+              </div>
+          </div>
           </div>
         </div>
       <div className="hidden space-y-6 p-10 pb-16 md:block">

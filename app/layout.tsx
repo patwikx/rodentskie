@@ -26,13 +26,11 @@ export default function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-
        <Providers>
         <ToasterProvider />
         {children}
         </Providers>
         </ThemeProvider>
-
         </body>
     </html>
   );

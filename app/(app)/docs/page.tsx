@@ -5,7 +5,7 @@ import { Search } from '../dashboard/components/search'
 import { ModeToggle } from '@/components/mode-toggle'
 import { UserNav } from '../dashboard/components/user-nav'
 
-const BillingPage = () => {
+const Documentation = () => {
   return (
     <>
     <div className="flex h-16 items-center px-4">
@@ -20,10 +20,10 @@ const BillingPage = () => {
                  </div>
                </div>
     <div className='flex items-center justify-center h-screen text-center'>
-      <label>Billing Page.</label>
+      <label>System Documentation Page</label>
     </div>
     </>
   )
 }
 
-export default BillingPage
+export default Documentation

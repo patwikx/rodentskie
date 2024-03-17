@@ -48,7 +48,7 @@ export function UserNav() {
 </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-60" align="end" forceMount>
+      <DropdownMenuContent className="w-full lg:w-60" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-4">
             <p className="flex flex-col text-lg font-medium leading-none text-center">{session?.user?.name}</p>

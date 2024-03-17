@@ -12,6 +12,7 @@ import { MainNav } from "../dashboard/components/main-nav"
 import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { AdminControl } from "../dashboard/components/admin-settings"
+import { SystemMenu } from "../dashboard/components/system-menu"
 
 export const metadata: Metadata = {
   title: "Tenants Manager",
@@ -34,17 +35,18 @@ export default async function TaskPage() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="border-b">
-        <div className="flex h-16 items-center px-2">
-          <TeamSwitcher />
-          <MainNav className="mx-6 md:block" />
-          <AdminControl />
-          <div className="ml-auto flex items-center space-x-4">
-            <Search />
-            <ModeToggle />
-            <UserNav />
+      <div className="w-full h-auto md:h-16">
+            <div className="flex h-16 items-center px-4">
+            <div className="hidden sm:block">
+                  <TeamSwitcher />
+            </div>
+            <SystemMenu />
+              <div className="ml-auto flex items-center space-x-2">
+                <Search />
+                <ModeToggle />
+                <UserNav />
+              </div>
           </div>
-        </div>
       </div>
       <div className="flex-1 flex flex-col p-4">
         <div className="flex flex-col space-y-4">
