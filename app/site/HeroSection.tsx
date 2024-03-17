@@ -22,9 +22,9 @@ const HeroSection: React.FC = () => {
           <TypeAnimation
             sequence={[
               "DEVELOPMENT",
-              1000,
+              500,
               "CORPORATION",
-              1000,
+              500,
             ]}
             wrapper="span"
             speed={50}
@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
         transition={{ duration: 0.5 }}
         className="col-span-4 place-self-center mt-4 lg:mt-0"
       >
-        <div className="rounded-full bg-[#181818] w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] relative">
+        <div className=" w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] relative">
           <Image
             src="/images/rdrdc.png"
             alt="hero image"
