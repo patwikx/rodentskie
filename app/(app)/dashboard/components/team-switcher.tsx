@@ -17,10 +17,10 @@ import {
 } from "@/components/ui/dialog"
 import {
   Popover,
-  PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 const groups = [
   {
@@ -40,12 +40,15 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverTrigger>
 
 interface TeamSwitcherProps extends PopoverTriggerProps {}
 
+
 export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [open, setOpen] = React.useState(false)
   const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false)
   const [selectedTeam, setSelectedTeam] = React.useState<Team>(
     groups[0].teams[0]
   )
+
+  const router = useRouter()
 
   return (
     <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
@@ -56,6 +59,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
             aria-expanded={open}
             aria-label="Select a team"
             className={cn("w-full sm:w-auto justify-between", className)}
+            onClick={() => router.push("/dashboard")}
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarFallback> <Image src="/assets/rdrdc.png" alt="Image" width={50} height={50} className="flex flex-col"/></AvatarFallback>
