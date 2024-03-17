@@ -14,4 +14,6 @@ export const config = { matcher: [
   '/api/auth/signout',
   '/api/auth/callback',
   '/api',
+  '/reports',
+  '/docs',
 ]}
