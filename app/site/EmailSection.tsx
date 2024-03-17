@@ -52,15 +52,15 @@ const EmailSection = () => {
         </h5>
         <p className="text-[#ADB7BE] mb-4 max-w-md">
           {" "}
-          I&apos;m currently looking for new opportunities, my inbox is always
-          open. Whether you have a question or just want to say hi, I&apos;ll
-          try my best to get back to you!
+          Exploring real estate opportunities? Don&apos;t hesitate to reach out to us at RD Realty.
+          Whether you&apos;re curious about buying, selling, or renting properties,
+          we&apos;re here to provide guidance and support every step of the way.
         </p>
         <div className="socials flex flex-row gap-2">
           <Link href="github.com">
             <Image src={GithubIcon} alt="Github Icon" />
           </Link>
-          <Link href="linkedin.com">
+          <Link href="https://www.facebook.com/RDRealtyGensan">
             <Image src={LinkedinIcon} alt="Linkedin Icon" />
           </Link>
         </div>

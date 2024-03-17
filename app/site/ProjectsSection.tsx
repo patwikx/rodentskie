@@ -8,54 +8,54 @@ const projectsData = [
   {
     id: 1,
     title: "General Santos Business Park",
-    description: "Project 1 description",
-    image: "/images/projects/1.png",
-    tag: ["All", "Web"],
+    description: "General Santos Business Park is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
+    image: "/images/projects/gsbp.jpg",
+    tag: ["All", "Rentals"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 2,
     title: "RD City",
-    description: "Project 2 description",
-    image: "/images/projects/2.png",
-    tag: ["All", "Web"],
+    description: "RD City is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
+    image: "/images/projects/rdcity.jpg",
+    tag: ["All", "Rentals"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 3,
     title: "RD Plaza",
-    description: "Project 3 description",
-    image: "/images/projects/3.png",
-    tag: ["All", "Web"],
+    description: "RD Plaza is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
+    image: "/images/projects/bee.jpg",
+    tag: ["All", "Rentals"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 4,
     title: "Norfolk Pine",
-    description: "Project 4 description",
-    image: "/images/projects/4.png",
-    tag: ["All", "Mobile"],
+    description: "Norfolk Pine is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
+    image: "/images/projects/norfolk.jpg",
+    tag: ["All", "For Sale"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 5,
     title: "Ephessians Building",
-    description: "Authentication and CRUD operations",
-    image: "/images/projects/5.png",
-    tag: ["All", "Web"],
+    description: "Ephessians Building is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
+    image: "/images/projects/native.jpg",
+    tag: ["All", "For Sale"],
     gitUrl: "/",
     previewUrl: "/",
   },
   {
     id: 6,
     title: "Corinthians Building",
-    description: "Project 5 description",
-    image: "/images/projects/6.png",
-    tag: ["All", "Web"],
+    description: "Corinthians Building is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
+    image: "/images/projects/bee.jpg",
+    tag: ["All", "For Sale"],
     gitUrl: "/",
     previewUrl: "/",
   },
@@ -92,12 +92,12 @@ const ProjectsSection:React.FC = () => {
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Web"
+          name="Rentals"
           isSelected={tag === "Web"}
         />
         <ProjectTag
           onClick={handleTagChange}
-          name="Mobile"
+          name="For Sale"
           isSelected={tag === "Mobile"}
         />
       </div>

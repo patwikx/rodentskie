@@ -9,12 +9,8 @@ const TAB_DATA = [
     id: "skills",
     content: (
       <ul className="list-disc pl-2">
-        <li>Node.js</li>
-        <li>Express</li>
-        <li>PostgreSQL</li>
-        <li>Sequelize</li>
-        <li>JavaScript</li>
-        <li>React</li>
+        <li>We are committed to a sustainable and profitable real estate development and business transactions through fostering a mutually beneficial relationship with our stakeholders.</li>
+        <li> We aim to uplift the quality of life of the communities where we operate and glorify God in everything we do.</li>
       </ul>
     ),
   },
@@ -23,8 +19,7 @@ const TAB_DATA = [
     id: "education",
     content: (
       <ul className="list-disc pl-2">
-        <li>Fullstack Academy of Code</li>
-        <li>University of California, Santa Cruz</li>
+        <li>A diversified real estate company delivering maximum value to customers and stockholders guided by the highest ethical standards of practice and strong faith in God.</li>
       </ul>
     ),
   },
@@ -33,8 +28,11 @@ const TAB_DATA = [
     id: "certifications",
     content: (
       <ul className="list-disc pl-2">
-        <li>AWS Cloud Practitioner</li>
-        <li>Google Professional Cloud Developer</li>
+        <li>Integrity</li>
+        <li>Innovation</li>
+        <li>Excellence</li>
+        <li>Interdependence</li>
+        <li>Godliness</li>
       </ul>
     ),
   },
@@ -56,16 +54,26 @@ const AboutSection = () => {
   return (
     <section className="text-white" id="about">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-      <Image src="/images/about-image.png" alt="About us" width={500} height={500} />
+      <Image src="/images/rd.jpg" alt="About us" width={700} height={700} />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">ABOUT US</h2>
-          <p className="text-base lg:text-lg">
-            I am a full stack web developer with a passion for creating
-            interactive and responsive web applications. I have experience
-            working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
-            Sequelize, HTML, CSS, and Git. I am a quick learner and I am always
-            looking to expand my knowledge and skill set. I am a team player and
-            I am excited to work with others to create amazing applications.
+          <p className="text-base lg:text-lg mb-2.5">
+          RD Realty Development Corporation was established & registered
+          in June 24, 1985 and is one of the subsidiaries of RD Group of 
+          Companies under the management and direction of Mr. Roy C. Rivera.
+          </p>
+          <p className="text-base lg:text-lg mb-2.5">
+          RD Realty Development Corporation is a member of RD Group of Companies
+          that engaged in the development of real estate projects, property management,
+          and construction of many of the company’s future developments. It has grown
+           into a very integrated company providing employment to over 250 people.
+          </p>
+          <p className="text-base lg:text-lg mb-2.5">
+           RD Realty Development Corporation is the property holding firm of the Realty
+           Development Group. It is the largest property owner and considered as the 
+           trendsetter in the leasing industry in General Santos City which today 
+           operates a growing inventory of 45,000 sqm leasable building spaces across
+           the country and overseas.
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton
