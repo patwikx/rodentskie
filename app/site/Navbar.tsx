@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
           className="text-2xl md:text-5xl font-semibold dark:text-white light:text-black mr-auto"
         >
           <Image
-            src="/images/rdrdc.png"
+            src="/images/rdrdc.webp"
             alt="hero image"
             className="absolute transform translate-x -translate-y top-2.5 left-8 dark:text-white light:text-black"
             width={40}

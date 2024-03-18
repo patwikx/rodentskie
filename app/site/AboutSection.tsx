@@ -50,7 +50,7 @@ const AboutSection = () => {
   return (
     <section className="dark:text-white light:text-black" id="about">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16 dark:text-white light:text-black">
-      <Image src="/images/rd.jpg" alt="About us" width={700} height={700} />
+      <Image src="/images/rd.webp" alt="About us" width={700} height={700} />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full dark:text-white light:text-black">
           <h2 className="text-4xl font-bold dark:text-white light:text-black mb-4">ABOUT US</h2>
           <p className="text-base lg:text-lg mb-2.5 dark:text-white light:text-black">
