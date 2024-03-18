@@ -98,7 +98,7 @@ export function UserProfile() {
             <Label htmlFor="createdAt" className="text-xs">
               Created At
             </Label>
-            <Input id="createdAt" value={userData ? new Date(userData.createdAt).toLocaleString() : ''} className="col-span-3" />
+            <Input id="createdAt" value={userData ? new Date(userData.createdAt).toLocaleString() : ''} className="col-span-3" readOnly />
             <Label htmlFor="updatedAt" className="text-xs">
               Updated by
             </Label>
