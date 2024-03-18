@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "./providers/providers";
 import ToasterProvider from "@/components/ToasterProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-
+import IdleTimeout from '../components/IdleTimeout' // Import the new component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +29,7 @@ export default function RootLayout({
             disableTransitionOnChange>
        <Providers>
         <ToasterProvider />
+        <IdleTimeout /> {/* Include the new component */}
         {children}
         </Providers>
         </ThemeProvider>

@@ -16,6 +16,7 @@ datasource db {
 enum Role {
   Administrator
   SysUser
+  Tenant
 }
 
 model User {
@@ -23,34 +24,98 @@ model User {
   name          String
   email         String       @unique
   password      String
-  role          Role
-  emailVerified DateTime?
+  role          Role @default(Administrator)
   image         String?
-  accounts      Account[]    @relation("SysUserAccounts")
-  sessions      Session[]    @relation("SysUserSessions")
   properties    Properties[]
   billing       Billing[]
-  createdAt DateTime @default(now())
-  createdBy     String
-  updatedBy     String
+  Pipeline      Pipeline[]
+  Tags          Tag[]
+  tickets       Ticket[]
+  createdAt     DateTime @default(now())
+  createdBy     String?
+  updatedBy     String?
   deletedAt     DateTime?
+}
+
+model Pipeline {
+  id           String     @id @default(uuid())
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  Lane         Lane[]
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@index([userId])
+}
+
+model Lane {
+  id         String   @id @default(uuid())
+  name       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  Pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  pipelineId String
+  Tickets    Ticket[]
+  order      Int      @default(0)
+
+  @@index([pipelineId])
+}
+
+model Ticket {
+  id          String   @id @default(uuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  laneId      String
+  order       Int      @default(0)
+  Lane        Lane     @relation(fields: [laneId], references: [id], onDelete: Cascade)
+  value       Decimal?
+  description String?
+  Tags        Tag[]
+
+  tenantId    String?
+  tenants     Tenant? @relation(fields: [tenantId], references: [id], onDelete: SetNull)
+
+  userId String?
+  Assigned       User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([laneId])
+  @@index([tenantId])
+  @@index([userId])
+}
+
+model Tag {
+  id           String   @id @default(uuid())
+  name         String
+  color        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       String
+
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Ticket     Ticket[]
+
+  @@index([userId])
 }
 
 model Tenant {
   id            String       @id @default(cuid())
   name          String
   email         String       @unique
-  password      String
+  password      String?
+  contactNo     String?
+  address       String?
   emailVerified DateTime?
   image         String?
   spaces        Spaces[]
   billing       Billing[]
+  tickets       Ticket[]
   createdAt DateTime @default(now())
-  createdBy     String
-  updatedBy     String
+  updatedBy     String?
   deletedAt     DateTime?
+  accounts      Account[]    @relation("TenantAccounts")
 }
-
 model Properties {
   id            String       @id @default(cuid())
   createdAt     DateTime     @default(now())
@@ -70,15 +135,15 @@ model Spaces {
   id            String       @id @default(cuid())
   spaceName     String
   oStatus       String
-  leasePeriod   String
-  expiryDate    DateTime
-  gFloorArea    String
-  mezFloor      String
-  secFloor      String
-  thirdFloor    String
-  roofTop       String
-  totalArea     String
-  monthlyRent   String
+  leasePeriod   String?
+  expiryDate    DateTime?
+  gFloorArea    Float?
+  mezFloor      Float?
+  secFloor      Float?
+  thirdFloor    Float?
+  roofTop       Float?
+  totalArea     Float
+  monthlyRent   Float
   tenantId      String
   tenant        Tenant       @relation(fields: [tenantId], references: [id])
   propertyId    String
@@ -98,16 +163,29 @@ model Billing {
   sysUser       User      @relation(fields: [sysUserId], references: [id])
   tenantId      String
   tenant        Tenant       @relation(fields: [tenantId], references: [id])
+  attachmentId  String?      @unique
+  attachment    Attachment? @relation(fields: [attachmentId], references: [id])
   createdAt DateTime @default(now())
   createdBy     String
   updatedBy     String
   deletedAt     DateTime?
 }
 
+model Attachment {
+  id        String @id @default(cuid())
+  filePath  String
+  fileName  String
+  fileType  String
+  fileSize  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  billing   Billing?
+}
+
 model Account {
   id        String @id @default(cuid())
   compoundId String @unique
-  userId    String
+  tenantId  String
   providerType String
   providerId   String
   providerAccountId String
@@ -116,22 +194,7 @@ model Account {
   accessTokenExpires DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  sysUser   User   @relation("SysUserAccounts", fields: [userId], references: [id])
-  createdBy String
-  updatedBy String
-  deletedAt DateTime?
-}
-
-model Session {
-  id        String @id @default(cuid())
-  userId    String
-  expires   DateTime
-  sessionToken String @unique
-  accessToken String @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  sysUser   User   @relation("SysUserSessions", fields: [userId], references: [id])
-  createdBy String
-  updatedBy String
+  tenant    Tenant @relation("TenantAccounts", fields: [tenantId], references: [id])
+  updatedBy String?
   deletedAt DateTime?
 }

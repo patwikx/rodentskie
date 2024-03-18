@@ -68,14 +68,12 @@ const authOptions: NextAuthOptions = {
           name: user.name,
           role: user.role, // Return the role
           createdAt: user.createdAt,
-          Key: 'P455W00asrd!@#'
         }
       }
     })
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log('Session Callback', { session, token })
       return {
         ...session,
         user: {
@@ -83,12 +81,10 @@ const authOptions: NextAuthOptions = {
           id: token.id,
           role: token.role, // Add role to session
           createdAt: token.createdAt,
-          randomKey: token.randomKey
         }
       }
     },
     jwt: ({ token, user }) => {
-      console.log('JWT Callback', { token, user })
       if (user) {
         const u = user as unknown as any
         return {
@@ -96,7 +92,6 @@ const authOptions: NextAuthOptions = {
           id: u.id,
           role: u.role, // Add role to JWT token
           createdAt: u.createdAt,
-          randomKey: u.randomKey
         }
       }
       return token

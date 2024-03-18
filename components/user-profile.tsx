@@ -25,13 +25,14 @@ interface User {
     createdAt: string;
     updatedAt: string;
     // Add any other properties you expect to receive
-  }
+}
 
 export function UserProfile() {
     const { data: session, status } = useSession();
     const loading = status === 'loading';
     const [userData, setUserData] = useState<User | null>(null);
-  
+    const [name, setName] = useState("");
+
     useEffect(() => {
       if (!loading && session) {
         fetch('/api/fetchUser', {
@@ -45,13 +46,14 @@ export function UserProfile() {
           .then((data) => {
             if (data.status === 'success') {
               setUserData(data.user);
+              setName(data.user.name);
             } else {
               console.error(data.message);
             }
           });
       }
     }, [loading, session]);
-  
+
     if (loading) {
       return null;
     }
@@ -84,23 +86,23 @@ export function UserProfile() {
             <Label htmlFor="name">
               Name
             </Label>
-            <Input id="name" value={userData?.name || ''} className="col-span-3" />
-            <Label htmlFor="name">
+            <Input id="name" value={name} className="col-span-3" onChange={e => setName(e.target.value)} />
+            <Label htmlFor="email">
               Email
             </Label>
-            <Input id="name" value={session?.user?.email || ''} className="col-span-3" />
-            <Label htmlFor="name">
+            <Input id="email" value={session?.user?.email || ''} className="col-span-3" />
+            <Label htmlFor="role">
               Role
             </Label>
-            <Input id="name" value={userData?.role || ''} className="col-span-3" />
-            <Label htmlFor="name" className="text-xs">
+            <Input id="role" value={userData?.role || ''} className="col-span-3" />
+            <Label htmlFor="createdAt" className="text-xs">
               Created At
             </Label>
-            <Input id="name" value={userData?.createdAt || ''} className="col-span-3" />
-            <Label htmlFor="name" className="text-xs">
+            <Input id="createdAt" value={userData?.createdAt || ''} className="col-span-3" />
+            <Label htmlFor="updatedAt" className="text-xs">
               Updated by
             </Label>
-            <Input id="name" value={userData?.updatedAt || 'No updates yet.'}className="col-span-3" />
+            <Input id="updatedAt" value={userData?.updatedAt || 'No updates yet.'} className="col-span-3" />
           </div>
         </div>
             <SheetFooter className="flex items-center justify-center">
