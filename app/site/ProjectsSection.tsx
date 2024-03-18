@@ -9,7 +9,7 @@ const projectsData = [
     id: 1,
     title: "General Santos Business Park",
     description: "General Santos Business Park is a 5.5-hectare mixed-use development located in the heart of General Santos City.",
-    image: "/images/projects/gsbp.webp",
+    image : "/images/projects/gsbp.webp",
     tag: ["All", "Rentals"],
     gitUrl: "/",
     previewUrl: "/",
