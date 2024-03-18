@@ -90,15 +90,15 @@ export function UserProfile() {
             <Label htmlFor="email">
               Email
             </Label>
-            <Input id="email" value={session?.user?.email || ''} className="col-span-3" />
+            <Input id="email" value={session?.user?.email || ''} className="col-span-3 text-xs" readOnly />
             <Label htmlFor="role">
               Role
             </Label>
-            <Input id="role" value={userData?.role || ''} className="col-span-3" />
+            <Input id="role" value={userData?.role || ''} className="col-span-3" readOnly />
             <Label htmlFor="createdAt" className="text-xs">
               Created At
             </Label>
-            <Input id="createdAt" value={userData?.createdAt || ''} className="col-span-3" />
+            <Input id="createdAt" value={userData ? new Date(userData.createdAt).toLocaleString() : ''} className="col-span-3" />
             <Label htmlFor="updatedAt" className="text-xs">
               Updated by
             </Label>
