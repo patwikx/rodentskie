@@ -1,6 +1,5 @@
 import { Separator } from "@/components/ui/separator"
 import { ProfileForm } from "@/app/(app)/settings/profile-form"
-import { UserNav } from "../dashboard/components/user-nav"
 
 export default function SettingsProfilePage() {
   return (

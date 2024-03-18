@@ -1,7 +1,4 @@
 
-import { ModeToggle } from "@/components/mode-toggle"
-import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 import HeroSection from "./site/HeroSection"
 import Navbar from "./site/Navbar"

@@ -5,7 +5,6 @@ import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from '../site/MenuOverlay'
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useRouter } from "next/navigation"
 import { LoginModal } from "@/components/loginModal";
@@ -55,7 +54,7 @@ const Navbar: React.FC = () => {
             ))}
           </ul>
         </div>
-        <div className="flex ml-auto space-x-4 pr-16"> {/* Increased right padding to 4rem (64px) */}
+        <div className="flex ml-auto space-x-4 pr-24"> {/* Increased right padding to 4rem (64px) */}
           <LoginModal />
           <ModeToggle />
         </div>

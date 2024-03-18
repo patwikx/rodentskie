@@ -8,10 +8,8 @@ import { DataTable } from "./components/data-table"
 import { UserNav } from "../dashboard/components/user-nav"
 import { taskSchema } from "./data/schema"
 import TeamSwitcher from "../dashboard/components/team-switcher"
-import { MainNav } from "../dashboard/components/main-nav"
 import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
-import { AdminControl } from "../dashboard/components/admin-settings"
 import { SystemMenu } from "../dashboard/components/system-menu"
 
 export const metadata: Metadata = {
