@@ -65,7 +65,7 @@ export function UserProfile() {
      <SheetHeader>
         <SheetTitle>Edit profile</SheetTitle>
         <SheetDescription>
-             Make changes to your profile here. Click save when you're done.
+             Make changes to your profile here. Click save when you&apos;re done.
         </SheetDescription>
     </SheetHeader>
   <div className="flex flex-col items-center justify-center gap-4 py-4">
