@@ -28,11 +28,7 @@ const TAB_DATA = [
     id: "certifications",
     content: (
       <ul className="list-disc pl-2 dark:text-white light:text-black">
-        <li>Integrity</li>
-        <li>Innovation</li>
-        <li>Excellence</li>
-        <li>Interdependence</li>
-        <li>Godliness</li>
+        <li>Integrity • Innovation • Excellence • Interdependence • Godliness</li>
       </ul>
     ),
   },
@@ -75,7 +71,7 @@ const AboutSection = () => {
            operates a growing inventory of 45,000 sqm leasable building spaces across
            the country and overseas.
           </p>
-          <div className="flex flex-row justify-start mt-8 dark:text-white light:text-black">
+          <div className="flex flex-row justify-center mt-8 dark:text-white light:text-black">
             <TabButton
               selectTab={() => handleTabChange("skills")}
               active={tab === "skills"}

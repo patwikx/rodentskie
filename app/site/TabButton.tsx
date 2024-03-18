@@ -14,10 +14,11 @@ interface TabButtonProps {
 
 const TabButton: React.FC<TabButtonProps> = ({ active, selectTab, children }) => {
   const buttonClasses = active ? "dark:text-white light:text-black" : "dark:text-white light:text-black";
+  const hoverClasses = "dark:hover:bg-black dark:hover:text-white light:hover:bg-white light:hover:text-black";
 
   return (
     <button onClick={selectTab}>
-      <p className={`mr-3 font-semibold hover:bg-white hover:text-black ${buttonClasses}`}>
+      <p className={`mr-3 font-semibold ${hoverClasses} ${buttonClasses}`}>
         {children}
       </p>
       <motion.div
