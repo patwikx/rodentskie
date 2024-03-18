@@ -84,7 +84,7 @@ const EmailSection = () => {
                 type="email"
                 id="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
+                className=" border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
                 placeholder="your@email.com"
               />
             </div>
@@ -100,7 +100,7 @@ const EmailSection = () => {
                 type="text"
                 id="subject"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
+                className=" border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
                 placeholder="Request for site visit."
               />
             </div>
@@ -114,7 +114,7 @@ const EmailSection = () => {
               <textarea
                 name="message"
                 id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
+                className="border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
                 placeholder="Your inquiry here."
               />
             </div>
