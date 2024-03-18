@@ -102,7 +102,7 @@ export function UserProfile() {
             <Label htmlFor="updatedAt" className="text-xs">
               Updated by
             </Label>
-            <Input id="updatedAt" value={userData?.updatedAt || 'No updates yet.'} className="col-span-3" />
+            <Input id="updatedAt" value={userData?.updatedAt || 'No updates yet.'} className="col-span-3"  readOnly/>
           </div>
         </div>
             <SheetFooter className="flex items-center justify-center">
