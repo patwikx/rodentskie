@@ -47,10 +47,10 @@ const EmailSection = () => {
     >
       <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
       <div className="z-10">
-        <h5 className="text-xl font-bold text-white my-2">
+        <h5 className="text-xl font-bold dark:text-white light:text-black my-2">
           Contact Us
         </h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md">
+        <p className="dark:text-white light:text-black mb-4 max-w-md">
           {" "}
           Exploring real estate opportunities? Don&apos;t hesitate to reach out to us at RD Realty.
           Whether you&apos;re curious about buying, selling, or renting properties,
@@ -67,7 +67,7 @@ const EmailSection = () => {
       </div>
       <div>
         {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
+          <p className="text-blue-500 text-sm mt-2">
             Email sent successfully!
           </p>
         ) : (
@@ -75,7 +75,7 @@ const EmailSection = () => {
             <div className="mb-6">
               <label
                 htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
+                className="dark:text-white light:text-black block mb-2 text-sm font-medium"
               >
                 Your email
               </label>
@@ -84,14 +84,14 @@ const EmailSection = () => {
                 type="email"
                 id="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
                 placeholder="your@email.com"
               />
             </div>
             <div className="mb-6">
               <label
                 htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
+                className="dark:text-white light:text-black block text-sm mb-2 font-medium"
               >
                 Subject
               </label>
@@ -100,26 +100,26 @@ const EmailSection = () => {
                 type="text"
                 id="subject"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
                 placeholder="Request for site visit."
               />
             </div>
             <div className="mb-6">
               <label
                 htmlFor="message"
-                className="text-white block text-sm mb-2 font-medium"
+                className="dark:text-white light:text-black block text-sm mb-2 font-medium"
               >
                 Message
               </label>
               <textarea
                 name="message"
                 id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] dark:text-white light:text-black text-sm rounded-lg block w-full p-2.5"
                 placeholder="Your inquiry here."
               />
             </div>
             <Button type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+              className="bg-primary-500 hover:bg-blue-600 dark:text-white light:text-black font-medium py-2.5 px-5 rounded-lg w-full"
               variant="outline">
                 Submit message
               </Button>
