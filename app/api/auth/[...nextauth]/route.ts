@@ -47,6 +47,7 @@ const authOptions: NextAuthOptions = {
             email: true,
             name: true,
             role: true, // Make sure to select the role
+            createdAt: true,
             password: true,
           }
         })
@@ -66,6 +67,7 @@ const authOptions: NextAuthOptions = {
           email: user.email,
           name: user.name,
           role: user.role, // Return the role
+          createdAt: user.createdAt,
           Key: 'P455W00asrd!@#'
         }
       }
@@ -80,6 +82,7 @@ const authOptions: NextAuthOptions = {
           ...session.user,
           id: token.id,
           role: token.role, // Add role to session
+          createdAt: token.createdAt,
           randomKey: token.randomKey
         }
       }
@@ -92,6 +95,7 @@ const authOptions: NextAuthOptions = {
           ...token,
           id: u.id,
           role: u.role, // Add role to JWT token
+          createdAt: u.createdAt,
           randomKey: u.randomKey
         }
       }

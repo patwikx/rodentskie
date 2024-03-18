@@ -88,3 +88,7 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
+html {
+  scrollbar-width: thin; /* For Firefox */
+  overflow: overlay; /* For Chrome, Safari and Opera */
+}

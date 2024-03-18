@@ -21,6 +21,7 @@ import { useSession } from 'next-auth/react'
 import { signOut } from 'next-auth/react'
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge";
+import { UserProfile } from "@/components/user-profile";
 
 export function UserNav() {
 
@@ -47,7 +48,7 @@ export function UserNav() {
 </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-full lg:w-60" align="end" forceMount>
+      <DropdownMenuContent className="w-full lg:w-60 overflow-auto" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-4">
             <p className="flex flex-col text-lg font-medium leading-none text-center">{session?.user?.name}</p>
@@ -62,9 +63,9 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem className="flex flex-col text-center">
-            <Link href="/settings">
-                Profile Settings
-            </Link>
+          <div onClick={(e) => e.stopPropagation()}>
+                <UserProfile />
+          </div>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
