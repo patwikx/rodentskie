@@ -9,7 +9,7 @@ export default function IdleTimeout() {
 
     function startTimer() {
       // Logout the user after 5 minutes of inactivity
-      timeout = setTimeout(logout, 5 * 60 * 1000);
+      timeout = setTimeout(logout, 15 * 60 * 1000);
     }
 
     function resetTimer() {

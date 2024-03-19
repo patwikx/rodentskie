@@ -3,6 +3,7 @@ import { compare } from 'bcrypt'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
+import { randomBytes } from 'crypto';
 
 const clientId = process.env.GOOGLE_ID
 const clientSecret = process.env.GOOGLE_SECRET
@@ -62,12 +63,15 @@ const authOptions: NextAuthOptions = {
           return null
         }
 
+        const accessToken = randomBytes(40).toString('hex');
+
         return {
-          id: user.id + '',
+          id: user.id,
           email: user.email,
           name: user.name,
           role: user.role, // Return the role
           createdAt: user.createdAt,
+          accessToken
         }
       }
     })
@@ -92,6 +96,7 @@ const authOptions: NextAuthOptions = {
           id: u.id,
           role: u.role, // Add role to JWT token
           createdAt: u.createdAt,
+          accessToken: u.accessToken,
         }
       }
       return token

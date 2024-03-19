@@ -9,6 +9,7 @@ import { DataTableViewOptions } from "@/app/(app)/taskmanager/components/data-ta
 
 import { statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
+import { AddNewProperty } from "@/components/add-new-property"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -22,6 +23,7 @@ export function DataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
+      <AddNewProperty />
         <Input
           placeholder="Filter properties..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}

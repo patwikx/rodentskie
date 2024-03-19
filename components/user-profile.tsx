@@ -86,7 +86,7 @@ export function UserProfile() {
             <Label htmlFor="name">
               Name
             </Label>
-            <Input id="name" value={name} className="col-span-3" onChange={e => setName(e.target.value)} />
+            <Input id="name" value={name} className="col-span-3" onChange={e => setName(e.target.value)} readOnly/>
             <Label htmlFor="email">
               Email
             </Label>
