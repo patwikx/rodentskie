@@ -1,5 +1,5 @@
 // PropertyPage.client.tsx
-
+'use client'
 import React, { useEffect, useState } from 'react';
 import { DataTable } from "./components/data-table"
 import { columns } from "./components/columns"

@@ -84,7 +84,7 @@ export default function PropertyPage() {
           <p></p>
         </div>
         <div className="flex-1 overflow-auto">
-          <DataTable data={properties} columns={columns} />
+          <PropertyPage />
         </div>
       </div>
     </div>
