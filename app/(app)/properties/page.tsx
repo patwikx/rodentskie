@@ -11,6 +11,7 @@ import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SystemMenu } from "../dashboard/components/system-menu"
 import { prisma } from "@/lib/prisma";
+import React, { useEffect, useState } from 'react';
 
 export const metadata: Metadata = {
   title: "Task Manager",
@@ -32,8 +33,42 @@ async function getProperties() {
   return properties;
 }
 
-export default async function PropertyPage() {
-  const properties = await getProperties()
+type Property = {
+  sysUser: { name: string };
+  id: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+  propertyCode: string;
+  propertyName: string | null;
+  regOwnerName: string | null;
+  titleNo: string | null;
+  landBuilding: string | null;
+  lotNo: string | null;
+  location: string | null;
+  cityRegion: string | null;
+  classification: string | null;
+  leasableArea: string | null;
+  orate: string | null;
+  taxDecNo: string | null;
+  propertyImage: string | null;
+  sysUserId: string;
+  createdBy: string | null;
+  updatedBy: string | null;
+  // ... add the rest of the properties here
+  deletedAt: Date | null;
+};
+
+export default function PropertyPage() {
+  const [properties, setProperties] = useState<Property[]>([]);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const data = await getProperties();
+      setProperties(data);
+    };
+
+    fetchProperties();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
