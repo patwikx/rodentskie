@@ -12,7 +12,6 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { SystemMenu } from "../dashboard/components/system-menu"
 import { prisma } from "@/lib/prisma";
 
-
 export const metadata: Metadata = {
   title: "Task Manager",
   description: "A task and issue tracker built using Tanstack Table.",
