@@ -78,7 +78,7 @@ export default function PropertyPage() {
         <div className="flex flex-col space-y-5">
           <h2 className="text-2xl font-bold tracking-tight">Property Management</h2>
           <p className="text-muted-foreground">
-            This is where you can manage your properties.
+            This is where you can manage all of your properties.
           </p>
           <p></p>
         </div>
