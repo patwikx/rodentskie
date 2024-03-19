@@ -22,7 +22,7 @@ import { labels } from "../data/data"
 import { propertiesSchema } from "../data/schema"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData & { createdAt: string; updatedAt: string }>;
+  row: Row<TData & { createdAt: Date; updatedAt: Date | null }>;
 }
 
 export function DataTableRowActions<TData>({
@@ -32,7 +32,7 @@ export function DataTableRowActions<TData>({
   const originalData = {
     ...row.original,
     createdAt: new Date(row.original.createdAt),
-    updatedAt: new Date(row.original.updatedAt),
+    updatedAt: row.original.updatedAt ? new Date(row.original.updatedAt) : null,
   };
 
   const task = propertiesSchema.parse(originalData);
