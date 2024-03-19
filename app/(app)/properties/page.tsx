@@ -1,4 +1,5 @@
-import { prisma } from '@/lib/prisma';
+'use client'
+import { useEffect, useState } from 'react';
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { UserNav } from "../dashboard/components/user-nav";
@@ -7,39 +8,37 @@ import { Search } from "../dashboard/components/search";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SystemMenu } from "../dashboard/components/system-menu";
 
-type Property = {
-  sysUser: { name: string };
-  id: string;
-  createdAt: Date;
-  updatedAt: Date | null;
-  propertyCode: string;
-  propertyName: string | null;
-  regOwnerName: string | null;
-  titleNo: string | null;
-  landBuilding: string | null;
-  lotNo: string | null;
-  location: string | null;
-  cityRegion: string | null;
-  classification: string | null;
-  leasableArea: string | null;
-  orate: string | null;
-  taxDecNo: string | null;
-  propertyImage: string | null;
-  sysUserId: string;
-  createdBy: string | null;
-  updatedBy: string | null;
-  // ... add the rest of the properties here
-  deletedAt: Date | null;
-};
+export default function PropertyPage() {
+  const [properties, setProperties] = useState([]);
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch('/api/fetchproperty', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({}), // Send any necessary data in the request body
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch property data');
+        }
+  
+        const responseData = await response.json();
+        setProperties(responseData.properties); // Set only the properties field to state
+  
+        // Log the properties data to the console
+        console.log(responseData.properties);
+      } catch (error) {
+        console.error('Error fetching property data:', error);
+      }
+    }
+  
+    fetchData();
+  }, []);// This useEffect will run only once after the initial render
 
-interface PropertyPageProps {
-  properties: Property[
-    
-  ]; // Assuming Property is a type representing the structure of a property
-}
-
-export default function PropertyPage({ properties }: PropertyPageProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="w-full h-auto md:h-16">
@@ -69,22 +68,4 @@ export default function PropertyPage({ properties }: PropertyPageProps) {
       </div>
     </div>
   )
-}
-
-export async function getServerSideProps() {
-  const properties = await prisma.properties.findMany({
-    include: {
-      sysUser: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
-
-  return {
-    props: {
-      properties,
-    },
-  };
 }

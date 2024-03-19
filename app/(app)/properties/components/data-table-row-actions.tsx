@@ -22,13 +22,20 @@ import { labels } from "../data/data"
 import { propertiesSchema } from "../data/schema"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData & { createdAt: string; updatedAt: string }>;
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = propertiesSchema.parse(row.original)
+  // Convert createdAt and updatedAt fields to Date objects
+  const originalData = {
+    ...row.original,
+    createdAt: new Date(row.original.createdAt),
+    updatedAt: new Date(row.original.updatedAt),
+  };
+
+  const task = propertiesSchema.parse(originalData);
 
   return (
     <DropdownMenu>
