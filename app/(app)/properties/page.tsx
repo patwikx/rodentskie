@@ -1,4 +1,3 @@
-
 import { Metadata } from "next"
 import { z } from "zod"
 
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 // Simulate a database read for tasks.
-async function getProperties() {
+export async function getProperties() {
   const properties = await prisma.properties.findMany({
     include: {
       sysUser: {
@@ -33,7 +32,7 @@ async function getProperties() {
   return properties;
 }
 
-type Property = {
+export type Property = {
   sysUser: { name: string };
   id: string;
   createdAt: Date;
@@ -60,15 +59,6 @@ type Property = {
 
 export default function PropertyPage() {
   const [properties, setProperties] = useState<Property[]>([]);
-
-  useEffect(() => {
-    const fetchProperties = async () => {
-      const data = await getProperties();
-      setProperties(data);
-    };
-
-    fetchProperties();
-  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
