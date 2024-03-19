@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { SelectSeparator } from "./ui/select"
-import { MultiFileDropzone } from "./multi-upload"
 import { useSession as useNextAuthSession } from 'next-auth/react'
 import React, { useState, useEffect } from 'react';
 import toast from "react-hot-toast"
@@ -240,7 +239,6 @@ export function AddNewProperty() {
               </div> 
             </div>
             <div className="flex flex-col justify-center items-center">
-                 <MultiFileDropzone />
             </div>
           </div>
           <DialogFooter>
