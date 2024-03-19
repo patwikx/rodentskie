@@ -10,7 +10,7 @@ import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SystemMenu } from "../dashboard/components/system-menu"
 import { prisma } from "@/lib/prisma";
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export const metadata: Metadata = {
   title: "Task Manager",
@@ -58,7 +58,6 @@ export type Property = {
 };
 
 export default function PropertyPage() {
-  const [properties, setProperties] = useState<Property[]>([]);
 
   return (
     <div className="min-h-screen flex flex-col">
