@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "@/app/(app)/taskmanager/components/data-table-view-options"
 
-import { statuses } from "../data/data"
+import { priorities, statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 import { AddNewProperty } from "@/components/add-new-property"
 
@@ -23,25 +23,34 @@ export function DataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-      <AddNewProperty />
+        <AddNewProperty />
         <Input
           placeholder="Filter properties..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("propertyCode")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("title")?.setFilterValue(event.target.value)
+            table.getColumn("propertyCode")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {table.getColumn("status") && (
+        {table.getColumn("propertyName") && (
           <DataTableFacetedFilter
-            column={table.getColumn("status")}
-            title="Status"
+            column={table.getColumn("PropertyName")}
+            title="Classification"
             options={statuses}
           />
         )}
+        {/*}
+        {table.getColumn("regOwnerName") && (
+          <DataTableFacetedFilter
+            column={table.getColumn("regOwnerName")}
+            title="Registered Owner"
+            options={priorities}
+          />
+        )}
+        */}
         {isFiltered && (
           <Button
-            variant="ghost"
+            variant="outline"
             onClick={() => table.resetColumnFilters()}
             className="h-8 px-2 lg:px-3"
           >

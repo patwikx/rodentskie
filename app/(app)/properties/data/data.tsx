@@ -3,6 +3,7 @@ import {
   ArrowRightIcon,
   ArrowUpIcon,
   CheckCircledIcon,
+  CircleIcon,
   CrossCircledIcon,
   QuestionMarkCircledIcon,
   StopwatchIcon,
@@ -11,7 +12,7 @@ import {
 export const labels = [
   {
     value: "bug",
-    label: "Rental",
+    label: "Under Renovation",
   },
   {
     value: "feature",
@@ -19,35 +20,25 @@ export const labels = [
   },
   {
     value: "documentation",
-    label: "Doormant Property",
+    label: "For Lease",
   },
 ]
 
 export const statuses = [
   {
     value: "backlog",
-    label: "Under Renovation",
-    icon: QuestionMarkCircledIcon,
+    label: "Real Properties",
+    icon: CheckCircledIcon,
   },
   {
     value: "todo",
-    label: "For Sale",
+    label: "Commercial Spaces",
     icon: CheckCircledIcon,
   },
   {
     value: "in progress",
-    label: "For Lease",
-    icon: StopwatchIcon,
-  },
-  {
-    value: "done",
-    label: "Occupied",
+    label: "Industrial Spaces",
     icon: CheckCircledIcon,
-  },
-  {
-    value: "canceled",
-    label: "Sold",
-    icon: CrossCircledIcon,
   },
 ]
 

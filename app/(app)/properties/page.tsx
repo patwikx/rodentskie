@@ -1,39 +1,44 @@
-import { promises as fs } from "fs"
-import path from "path"
+
 import { Metadata } from "next"
 import { z } from "zod"
 
 import { columns } from "./components/columns"
 import { DataTable } from "./components/data-table"
 import { UserNav } from "../dashboard/components/user-nav"
-import { taskSchema } from "./data/schema"
+import { propertiesSchema } from "./data/schema"
 import TeamSwitcher from "../dashboard/components/team-switcher"
 import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SystemMenu } from "../dashboard/components/system-menu"
+import { prisma } from "@/lib/prisma";
+
 
 export const metadata: Metadata = {
-  title: "Property Manager",
+  title: "Task Manager",
   description: "A task and issue tracker built using Tanstack Table.",
 }
 
 // Simulate a database read for tasks.
-async function getTasks() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "app/(app)/taskmanager/data/tasks.json")
-  )
+async function getProperties() {
+  const properties = await prisma.properties.findMany({
+    include: {
+      sysUser: {
+        select: {
+          name: true,
+        },
+      },
+    },
+  });
 
-  const tasks = JSON.parse(data.toString())
-
-  return z.array(taskSchema).parse(tasks)
+  return properties;
 }
 
-export default async function TaskPage() {
-  const tasks = await getTasks()
+export default async function PropertyPage() {
+  const properties = await getProperties()
 
   return (
     <div className="min-h-screen flex flex-col">
-         <div className="w-full h-auto md:h-16">
+          <div className="w-full h-auto md:h-16">
             <div className="flex h-16 items-center px-4">
             <div className="hidden sm:block">
                   <TeamSwitcher />
@@ -45,16 +50,17 @@ export default async function TaskPage() {
                 <UserNav />
               </div>
           </div>
-      </div>
-      <div className="flex-1 flex flex-col p-4">
-        <div className="flex flex-col space-y-4">
+          </div>
+       <div className="flex-1 flex flex-col p-4">
+        <div className="flex flex-col space-y-5">
           <h2 className="text-2xl font-bold tracking-tight">Property Management</h2>
-          <p className="text-muted-foreground" style={{ marginBottom: '20px' }}>
-              Here are the list of your properties.
+          <p className="text-muted-foreground">
+            This is where you can manage your properties.
           </p>
+          <p></p>
         </div>
         <div className="flex-1 overflow-auto">
-          <DataTable data={tasks} columns={columns} />
+          <DataTable data={properties} columns={columns} />
         </div>
       </div>
     </div>

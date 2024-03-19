@@ -1,13 +1,16 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
+
+import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
+
 import { labels, priorities, statuses } from "../data/data"
-import { Task } from "../data/schema"
+import { Properties } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<Properties>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -33,82 +36,85 @@ export const columns: ColumnDef<Task>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "id",
+    accessorKey: "propertyCode",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Property Code" />
     ),
-    cell: ({ row }) => <div className="w-[80px]"></div>,
-    enableSorting: false,
-    enableHiding: false,
   },
   {
-    accessorKey: "title",
+    accessorKey: "propertyName",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Property Name" />
     ),
-    cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
-
-      return (
-        <div className="flex space-x-2">
-          
-        </div>
-      )
-    },
   },
   {
-    accessorKey: "status",
+    accessorKey: "regOwnerName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="Registered Owner" />
     ),
-    cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
-      )
-
-      if (!status) {
-        return null
-      }
-
-      return (
-        <div className="flex w-[100px] items-center">
-          
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
   },
   {
-    accessorKey: "priority",
+    accessorKey: "titleNo",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Title No." />
+    ),
+  },
+  {
+    accessorKey: "landBuilding",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Land / Bldg / Improvement" />
+    ),
+  },
+  {
+    accessorKey: "lotNo",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Lot No." />
+    ),
+  },
+  {
+    accessorKey: "location",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Location" />
+    ),
+  },
+  {
+    accessorKey: "cityRegion",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="City / Region" />
+    ),
+  },
+  {
+    accessorKey: "classification",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Classification" />
+    ),
+  },
+  {
+    accessorKey: "leasableArea",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Leasable Area" />
+    ),
+  },
+  {
+    accessorKey: "orate",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Occupancy Rate" />
+    ),
+  },
+  {
+    accessorKey: "taxDecNo",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Tax Declaration" />
     ),
-    cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
-      )
-
-      if (!priority) {
-        return null
-      }
-
-      return (
-        <div className="flex items-center">
-          
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+  },
+  {
+    accessorKey: "sysUser.name",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Created by" />
+    ),
   },
   {
     id: "actions",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Actions" />
-    ),
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
 ]
