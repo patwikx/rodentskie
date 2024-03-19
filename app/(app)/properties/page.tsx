@@ -10,15 +10,9 @@ import { Search } from "../dashboard/components/search"
 import { ModeToggle } from "@/components/mode-toggle"
 import { SystemMenu } from "../dashboard/components/system-menu"
 import { prisma } from "@/lib/prisma";
-import React from 'react';
-
-export const metadata: Metadata = {
-  title: "Task Manager",
-  description: "A task and issue tracker built using Tanstack Table.",
-}
 
 // Simulate a database read for tasks.
-export async function getProperties() {
+async function getProperties() {
   const properties = await prisma.properties.findMany({
     include: {
       sysUser: {
@@ -32,32 +26,8 @@ export async function getProperties() {
   return properties;
 }
 
-export type Property = {
-  sysUser: { name: string };
-  id: string;
-  createdAt: Date;
-  updatedAt: Date | null;
-  propertyCode: string;
-  propertyName: string | null;
-  regOwnerName: string | null;
-  titleNo: string | null;
-  landBuilding: string | null;
-  lotNo: string | null;
-  location: string | null;
-  cityRegion: string | null;
-  classification: string | null;
-  leasableArea: string | null;
-  orate: string | null;
-  taxDecNo: string | null;
-  propertyImage: string | null;
-  sysUserId: string;
-  createdBy: string | null;
-  updatedBy: string | null;
-  // ... add the rest of the properties here
-  deletedAt: Date | null;
-};
-
-export default function PropertyPage() {
+export default async function PropertyPage() {
+  const properties = await getProperties()
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -78,12 +48,12 @@ export default function PropertyPage() {
         <div className="flex flex-col space-y-5">
           <h2 className="text-2xl font-bold tracking-tight">Property Management</h2>
           <p className="text-muted-foreground">
-            This is where you can manage all of your properties.
+            This is where you can manage your properties.
           </p>
           <p></p>
         </div>
         <div className="flex-1 overflow-auto">
-          <PropertyPage />
+          <DataTable data={properties} columns={columns} />
         </div>
       </div>
     </div>
