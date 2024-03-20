@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { columns } from "./components/columns";
 import { DataTable } from "./components/data-table";
 import { UserNav } from "../dashboard/components/user-nav";
@@ -7,6 +7,8 @@ import TeamSwitcher from "../dashboard/components/team-switcher";
 import { Search } from "../dashboard/components/search";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SystemMenu } from "../dashboard/components/system-menu";
+import { Skeleton } from '@/components/ui/skeleton';
+
 
 export default function PropertyPage() {
   const [properties, setProperties] = useState([]);
@@ -63,7 +65,9 @@ export default function PropertyPage() {
           <p></p>
         </div>
         <div className="flex-1 overflow-auto">
+          <Suspense fallback={<Skeleton />}>
           <DataTable data={properties} columns={columns} />
+          </Suspense>
         </div>
       </div>
     </div>
