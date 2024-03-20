@@ -43,12 +43,12 @@ model Tenant {
   contactNo     String?
   address       String?
   emailVerified DateTime?
-  image         String?
+  tenantImage         String?
   UserId        String
   User          User      @relation(fields: [UserId], references: [id])
   spaces        Spaces[]
   billing       Billing[]
-  createdAt DateTime @default(now())
+  createdAt     DateTime @default(now())
   updatedBy     String?
   deletedAt     DateTime?
   accounts      Account[]    @relation("TenantAccounts")

@@ -6,11 +6,11 @@ import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
 import { labels, priorities, statuses } from "../data/data"
-import { Properties } from "../data/schema"
+import { Tenants } from "../data/schema"
 import { DataTableColumnHeader } from "./data-table-column-header"
 import { DataTableRowActions } from "./data-table-row-actions"
 
-export const columns: ColumnDef<Properties>[] = [
+export const columns: ColumnDef<Tenants>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -36,83 +36,48 @@ export const columns: ColumnDef<Properties>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "propertyCode",
+    accessorKey: "id",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Property Code" />
+      <DataTableColumnHeader column={column} title="ID" />
     ),
   },
   {
-    accessorKey: "propertyName",
+    accessorKey: "name",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Property Name" />
+      <DataTableColumnHeader column={column} title="Name" />
     ),
   },
   {
-    accessorKey: "regOwnerName",
+    accessorKey: "email",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Registered Owner" />
+      <DataTableColumnHeader column={column} title="Email" />
     ),
   },
   {
-    accessorKey: "titleNo",
+    accessorKey: "password",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Title No." />
+      <DataTableColumnHeader column={column} title="Password" />
     ),
   },
   {
-    accessorKey: "landBuilding",
+    accessorKey: "contactNo",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Land / Bldg / Improvement" />
+      <DataTableColumnHeader column={column} title="Contact No." />
     ),
   },
   {
-    accessorKey: "lotNo",
+    accessorKey: "address",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Lot No." />
+      <DataTableColumnHeader column={column} title="Address" />
     ),
   },
   {
-    accessorKey: "location",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Location" />
-    ),
-  },
-  {
-    accessorKey: "cityRegion",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="City / Region" />
-    ),
-  },
-  {
-    accessorKey: "classification",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Classification" />
-    ),
-  },
-  {
-    accessorKey: "leasableArea",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Leasable Area" />
-    ),
-  },
-  {
-    accessorKey: "orate",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Occupancy Rate" />
-    ),
-  },
-  {
-    accessorKey: "taxDecNo",
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Tax Declaration" />
-    ),
-  },
-  {
-    accessorKey: "sysUser.name",
+    accessorKey: "User.name",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created by" />
     ),
   },
+
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,

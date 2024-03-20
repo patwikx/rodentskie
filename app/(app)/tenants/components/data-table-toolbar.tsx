@@ -9,7 +9,7 @@ import { DataTableViewOptions } from "@/app/(app)/taskmanager/components/data-ta
 
 import { priorities, statuses } from "../data/data"
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
-import { AddNewProperty } from "@/components/add-new-property"
+import { AddNewTenant } from "@/components/add-new-tenant"
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -23,12 +23,12 @@ export function DataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-        <AddNewProperty />
+        <AddNewTenant />
         <Input
           placeholder="Filter properties..."
-          value={(table.getColumn("propertyCode")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
-            table.getColumn("propertyCode")?.setFilterValue(event.target.value)
+            table.getColumn("name")?.setFilterValue(event.target.value)
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
@@ -36,7 +36,7 @@ export function DataTableToolbar<TData>({
         {table.getColumn("classification") && (
           <DataTableFacetedFilter
             column={table.getColumn("classification")}
-            title="Classification"
+            title="Status"
             options={statuses}
           />
         )}

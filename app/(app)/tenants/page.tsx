@@ -10,13 +10,13 @@ import { SystemMenu } from "../dashboard/components/system-menu";
 import { Skeleton } from '@/components/ui/skeleton';
 
 
-export default function PropertyPage() {
-  const [properties, setProperties] = useState([]);
+export default function TenantsPage() {
+  const [tenants, setTenants] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('/api/fetchproperty', {
+        const response = await fetch('/api/fetchtenants', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -29,10 +29,10 @@ export default function PropertyPage() {
         }
   
         const responseData = await response.json();
-        setProperties(responseData.properties); // Set only the properties field to state
+        setTenants(responseData.tenants); // Set only the properties field to state
   
         // Log the properties data to the console
-        console.log(responseData.properties);
+        console.log(responseData.tenants);
       } catch (error) {
         console.error('Error fetching property data:', error);
       }
@@ -66,7 +66,7 @@ export default function PropertyPage() {
         </div>
         <div className="flex-1 overflow-auto">
           <Suspense fallback={<Skeleton />}>
-          <DataTable data={properties} columns={columns} />
+          <DataTable data={tenants} columns={columns} />
           </Suspense>
         </div>
       </div>

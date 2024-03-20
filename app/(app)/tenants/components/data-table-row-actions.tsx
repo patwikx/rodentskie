@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { labels } from "../data/data"
-import { propertiesSchema } from "../data/schema"
+import { tenantsSchema } from "../data/schema"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData & { createdAt: Date; updatedAt: Date | null }>;
@@ -33,9 +33,10 @@ export function DataTableRowActions<TData>({
     ...row.original,
     createdAt: new Date(row.original.createdAt),
     updatedAt: row.original.updatedAt ? new Date(row.original.updatedAt) : null,
+ // provide a default value if image is undefined
   };
 
-  const task = propertiesSchema.parse(originalData);
+  const task = tenantsSchema.parse(originalData);
 
   return (
     <DropdownMenu>
