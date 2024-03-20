@@ -19,16 +19,23 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 import { labels } from "../data/data"
-import { taskSchema } from "../data/schema"
+import { propertiesSchema } from "../data/schema"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData & { createdAt: Date; updatedAt: Date | null }>;
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const task = taskSchema.parse(row.original)
+  // Convert createdAt and updatedAt fields to Date objects
+  const originalData = {
+    ...row.original,
+    createdAt: new Date(row.original.createdAt),
+    updatedAt: row.original.updatedAt ? new Date(row.original.updatedAt) : null,
+  };
+
+  const task = propertiesSchema.parse(originalData);
 
   return (
     <DropdownMenu>
@@ -45,19 +52,6 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Edit</DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuSub>
-          <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
-          <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.label}>
-              {labels.map((label) => (
-                <DropdownMenuRadioItem key={label.value} value={label.value}>
-                  {label.label}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuSubContent>
-        </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Delete

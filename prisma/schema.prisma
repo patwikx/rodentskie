@@ -27,6 +27,7 @@ model User {
   role          Role @default(Administrator)
   image         String?   @db.Text
   properties    Properties[]
+  tenants       Tenant[]
   billing       Billing[]
   createdAt     DateTime @default(now())
   createdBy     String?
@@ -43,6 +44,8 @@ model Tenant {
   address       String?
   emailVerified DateTime?
   image         String?
+  UserId        String
+  User          User      @relation(fields: [UserId], references: [id])
   spaces        Spaces[]
   billing       Billing[]
   createdAt DateTime @default(now())
